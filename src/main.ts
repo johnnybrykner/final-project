@@ -1,8 +1,12 @@
 import Vue from "vue";
+import "./plugins/vuetify";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import "./registerServiceWorker";
+import Default from "./layouts/Default.vue";
+import "./assets/style.scss";
+
+Vue.component("default-layout", Default);
 
 Vue.config.productionTip = false;
 
