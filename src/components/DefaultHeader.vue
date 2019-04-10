@@ -17,7 +17,7 @@
         @click.native="toggleCart"
       >
         <v-badge
-          left
+          right
           color="blue"
         >
           <template v-slot:badge>

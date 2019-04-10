@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-4">
+  <v-card class="ma-4" >
     <v-img :src="product.image" />
     <v-card-title primary-title>
       <div>
@@ -13,12 +13,13 @@
           flat 
           color="primary"
           ref="add-to-cart"
+          @click.native="addToCart"
         >
           Add to cart
         </v-btn>
       </v-flex>
       <v-flex xs4>
-        <v-chip disabled v-if="product.category.includes('sale')">kr. {{ product.promo.price }}</v-chip>
+        <v-chip disabled v-if="product.category.includes('sale')">kr. {{ product.promo.before }}</v-chip>
         <v-chip color="primary">kr. {{ product.price }}</v-chip>
       </v-flex>
     </v-card-actions>
@@ -27,9 +28,14 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import { Product } from '@/types';
 
 @Component
 export default class ProductCard extends Vue {
-  @Prop({ type: Object, required: true }) product!: Object;
+  @Prop({ required: true }) product!: Product;
+
+  addToCart() {
+    this.$store.commit("cart/addToCart", this.product);
+  }
 }
 </script>
