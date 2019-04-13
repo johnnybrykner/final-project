@@ -3,10 +3,12 @@ import "./plugins/vuetify";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import Default from "./layouts/Default.vue";
+import DefaultLayout from "./layouts/DefaultLayout.vue";
+import CheckoutLayout from "./layouts/CheckoutLayout.vue";
 import "./assets/style.scss";
 
-Vue.component("default-layout", Default);
+Vue.component("default-layout", DefaultLayout);
+Vue.component("checkout-layout", CheckoutLayout);
 
 Vue.config.productionTip = false;
 

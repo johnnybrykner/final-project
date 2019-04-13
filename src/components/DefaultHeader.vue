@@ -1,10 +1,7 @@
 <template>
-  <v-toolbar dark color="primary">
-    <div
-      ref="icon-menu-toggle"
-      @click="toggleMenu"
-    >
-      <v-toolbar-side-icon/>
+  <v-toolbar class="secondary">
+    <div ref="icon-menu-toggle" @click="toggleMenu">
+      <v-toolbar-side-icon />
     </div>
     <v-spacer />
     <v-toolbar-title>notBilka</v-toolbar-title>
@@ -16,12 +13,9 @@
         ref="icon-cart-toggle"
         @click.native="toggleCart"
       >
-        <v-badge
-          right
-          color="blue"
-        >
+        <v-badge right class="text--black">
           <template v-slot:badge>
-            <span>{{ getCart.length }}</span>
+            <span class="text--white">{{ getCart.length }}</span>
           </template>
           <v-icon>
             shopping_cart
@@ -34,19 +28,17 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { Product } from '@/types';
+import { Product } from "@/types";
 import { mapGetters } from "vuex";
 
 @Component({
   computed: {
-    ...mapGetters("cart", [
-      "getCart"
-    ])
+    ...mapGetters("cart", ["getCart"])
   }
 })
 export default class DefaultHeader extends Vue {
   getCart!: Product[];
-  
+
   toggleCart(): void {
     this.$emit("toggle-cart");
   }

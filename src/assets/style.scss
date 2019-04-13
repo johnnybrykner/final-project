@@ -1,1 +1,43 @@
 $black: #000;
+$grey: #dbdbdb;
+$white: #fff;
+$primary: #ff9f79;
+$secondary: #6070ff;
+$accent: #6ecc38;
+
+.primary {
+  background-color: $primary !important;
+}
+.text--primary {
+  color: $primary !important;
+}
+.secondary {
+  background-color: $secondary !important;
+}
+.text--secondary {
+  color: $secondary !important;
+}
+.accent {
+  background-color: $accent !important;
+}
+.text--accent {
+  color: $accent !important;
+}
+.white {
+  background-color: $white !important;
+}
+.text--white {
+  color: $white !important;
+}
+.grey {
+  background-color: $grey !important;
+}
+.text--grey {
+  color: $grey !important;
+}
+.black {
+  background-color: $black !important;
+}
+.text--black {
+  color: $black !important;
+}

@@ -5,25 +5,17 @@
       v-for="(item, i) in navCategories"
       :key="i"
     >
-      <router-link
-       :to="item.to"
-       v-if="item.type === 'nav'"
-      >
+      <router-link :to="item.to" v-if="item.type === 'nav'">
         {{ item.title }}
       </router-link>
       <v-expansion-panel v-else>
         <v-expansion-panel-content>
-          <template
-            v-slot:header
-          >
+          <template v-slot:header>
             Categories
           </template>
           <v-list>
             <v-layout column wrap>
-              <v-list-tile
-                v-for="(category, i) in productCategories"
-                :key="i"
-              >
+              <v-list-tile v-for="(category, i) in productCategories" :key="i">
                 <router-link :to="category.to">
                   {{ category.title }}
                 </router-link>
@@ -77,19 +69,18 @@ export default class SliderNavigation extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  ::v-deep .v-expansion-panel {
-    max-height: 100%;
-    box-shadow: none;
-    .v-expansion-panel__header {
-      padding: 0;
-    }
-    .v-expansion-panel__container {
-      background-color: transparent;
-    }
+::v-deep .v-expansion-panel {
+  max-height: 100%;
+  box-shadow: none;
+  .v-expansion-panel__header {
+    padding: 0;
   }
-  a {
-    text-decoration: none;
-    color: $black;
+  .v-expansion-panel__container {
+    background-color: transparent;
   }
+}
+a {
+  text-decoration: none;
+  color: $black;
+}
 </style>
-
