@@ -13,9 +13,9 @@
         ref="icon-cart-toggle"
         @click.native="toggleCart"
       >
-        <v-badge right class="text--black">
+        <v-badge right class="black--text">
           <template v-slot:badge>
-            <span class="text--white">{{ getCart.length }}</span>
+            <span class="white--text">{{ getCart.length }}</span>
           </template>
           <v-icon>
             shopping_cart

@@ -16,6 +16,7 @@
       </v-layout>
     </v-container>
     <mini-cart-item
+      @item-removed="isCartEmpty"
       v-for="(product, i) in getCart"
       :key="i"
       :product="product"
@@ -40,8 +41,14 @@ import { Product } from "@/types";
 export default class MiniCart extends Vue {
   getCart!: Product[];
 
-  closeCart(): void {
+  closeCart() {
     this.$emit("close-cart");
+  }
+
+  isCartEmpty() {
+    if (this.getCart.length === 0) {
+      this.closeCart();
+    }
   }
 
   get itemOrItems() {

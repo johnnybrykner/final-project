@@ -10,24 +10,24 @@
             <h4>{{ product.name }}</h4>
           </v-flex>
           <v-flex d-flex justify-start caption py-0>
-            <span class="grey--text">
+            <span class="dark-grey--text">
               Color:
             </span>
             <span class="ml-3">
               {{ product.color }}
             </span>
           </v-flex>
-          <v-flex d-flex pt-3>
-            <span v-if="product.promo.before" class="align-self-end">
+          <v-flex d-flex py-3>
+            <span v-if="product.promo.before" class="align-self-end dark-grey--text caption">
               {{ product.promo.before }}
             </span>
-            <span class="align-self-end ml-3">
-              {{ product.price }}
+            <span class="align-self-end ml-3 secondary--text em">
+              Kr. {{ product.price }}
             </span>
           </v-flex>
           <v-flex py-0>
             <span>
-              <product-amount :product="product" />
+              <product-amount :product="product" @item-removed="$emit('item-removed')" />
             </span>
           </v-flex>
         </v-layout>

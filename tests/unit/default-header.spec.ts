@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuetify from "vuetify";
-import VueRouter from "vue-router";
 import DefaultHeader from "@/components/DefaultHeader.vue";
 import { shallowMount, Wrapper, createLocalVue } from "@vue/test-utils";
 

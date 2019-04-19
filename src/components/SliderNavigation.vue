@@ -11,7 +11,7 @@
       <v-expansion-panel v-else>
         <v-expansion-panel-content>
           <template v-slot:header>
-            Categories
+            <a>Categories</a>
           </template>
           <v-list>
             <v-layout column wrap>
@@ -78,9 +78,5 @@ export default class SliderNavigation extends Vue {
   .v-expansion-panel__container {
     background-color: transparent;
   }
-}
-a {
-  text-decoration: none;
-  color: $black;
 }
 </style>

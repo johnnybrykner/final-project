@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import Vuetify from "vuetify";
-import MiniCartItem from "@/components/MiniCartItem.vue";
-import { mount, Wrapper, createLocalVue } from "@vue/test-utils";
+import ProductAmount from "@/components/ProductAmount.vue";
+import { shallowMount, Wrapper, createLocalVue } from "@vue/test-utils";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
@@ -13,13 +13,13 @@ const mutations = {
 
 const store = new Vuex.Store({ mutations });
 
-describe("MiniCartItem", () => {
+describe("ProductAmount", () => {
   beforeEach(() => {
     Vue.use(Vuetify);
   });
 
   it("removes a product to cart upon button press", () => {
-    const wrapper: Wrapper<MiniCartItem> = mount(MiniCartItem, {
+    const wrapper: Wrapper<ProductAmount> = shallowMount(ProductAmount, {
       store,
       localVue,
       propsData: {
@@ -28,19 +28,15 @@ describe("MiniCartItem", () => {
           price: 9999,
           className: "Name",
           category: ["categoryName"],
-          amount: 0,
+          amount: 1,
           stock: 5,
           promo: "",
           image: "imageSource"
         }
       }
     });
-    const cart = wrapper.find({ ref: "cart-slider" });
 
-    wrapper.find({ ref: "add-to-cart" }).trigger("click");
-    expect(cart).toContain("div.Name");
-
-    wrapper.find({ ref: "remove-from-cart" }).trigger("click");
-    expect(cart).not.toContain("div.Name");
+    wrapper.find({ ref: "decrease-quantity" }).trigger("click");
+    expect(wrapper.find('h3')!.text()).toBe("0");
   });
 });
