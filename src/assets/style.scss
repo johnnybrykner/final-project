@@ -71,7 +71,7 @@ $accent: #6ecc38;
   font-weight: 600;
 }
 
->>> *:not(.material-icons, .v-badge) {
+::v-deep *:not(.material-icons, .v-badge) {
   font-size: 16px;
   line-height: 26px;
   font-family: 'OS', sans-serif;

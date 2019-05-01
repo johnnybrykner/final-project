@@ -2,7 +2,7 @@
   <div>
     <v-container px-1 pt-1 pb-0>
       <v-layout column nowrap>
-        <v-btn small fab class="align-self-end" @click.native="closeCart">
+        <v-btn small fab flat class="align-self-end" @click.native="closeCart">
           <v-icon>close</v-icon>
         </v-btn>
         <v-flex xs12>
@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import MiniCartItem from "@/components/MiniCartItem.vue";
 import { mapGetters } from "vuex";
 import { Product } from "@/types";

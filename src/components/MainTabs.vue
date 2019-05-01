@@ -8,7 +8,7 @@
         v-for="(product, i) in categorizedProducts[i]"
         :key="i"
         :product="product"
-      ></product-card>
+      />
     </v-tab-item>
   </v-tabs>
 </template>

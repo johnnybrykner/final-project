@@ -1,28 +1,36 @@
 <template>
-  <v-card class="ma-4">
-    <v-img :src="product.image" />
-    <v-card-title class="pa-3">
-      <div>
-        <h3 class="mb-0">{{ product.name }}</h3>
-        <div>description incoming</div>
-      </div>
-    </v-card-title>
-    <v-card-actions class="d-flex justify-space-between pa-3">
-      <v-flex xs6>
-        <v-btn class="primary black--text" ref="add-to-cart" @click.native="addToCart">
-          Add to cart
-        </v-btn>
-      </v-flex>
-      <v-flex xs6>
-        <v-layout column align-end>
-          <span class="dark-grey--text caption" v-if="product.category.includes('sale')"
-            >Was kr. {{ product.promo.before }}</span
-          >
-          <h3 class="secondary--text">kr. {{ product.price }}</h3>
-        </v-layout>
-      </v-flex>
-    </v-card-actions>
-  </v-card>
+  <div>
+    <v-card class="ma-4">
+      <v-img :src="product.image" />
+      <v-card-title class="pa-3">
+        <div>
+          <h3 class="mb-0">{{ product.name }}</h3>
+          <div>description incoming</div>
+        </div>
+      </v-card-title>
+      <v-card-actions class="d-flex justify-space-between pa-3">
+        <v-flex xs6>
+          <v-btn class="primary black--text" ref="add-to-cart" @click.native="addToCart">
+            Add to cart
+          </v-btn>
+        </v-flex>
+        <v-flex xs6>
+          <v-layout column align-end>
+            <span class="dark-grey--text caption" v-if="product.category.includes('sale')"
+              >Was kr. {{ product.promo.before }}</span
+            >
+            <h3 class="secondary--text">kr. {{ product.price }}</h3>
+          </v-layout>
+        </v-flex>
+      </v-card-actions>
+    </v-card>
+    <v-snackbar v-model="snackbar" :timeout=4000>
+      Product added to cart!
+      <v-btn @click.native="cancel" class="secondary">
+        Remove
+      </v-btn>
+    </v-snackbar>
+  </div>
 </template>
 
 <script lang="ts">
@@ -33,8 +41,16 @@ import { Product } from "@/types";
 export default class ProductCard extends Vue {
   @Prop({ required: true }) product!: Product;
 
+  snackbar: boolean = false;
+
+  cancel() {
+    this.$store.commit('cart/removeFromCart', this.product);
+    this.snackbar = false;
+  }
+
   addToCart() {
     this.$store.commit("cart/addToCart", this.product);
+    this.snackbar = true;
   }
 }
 </script>
