@@ -1,27 +1,48 @@
 <template>
-  <div>
-    <v-container px-1 pt-1 pb-0>
-      <v-layout column nowrap>
-        <v-btn small fab flat class="align-self-end" @click.native="closeCart">
-          <v-icon>close</v-icon>
+  <v-container pt-0>
+    <v-layout column wrap>
+      <v-flex xs12>
+        <v-container pa-0>
+          <v-layout column nowrap justify-space-between>
+            <v-btn
+              small
+              fab
+              flat
+              class="align-self-end"
+              @click.native="closeCart"
+            >
+              <v-icon>close</v-icon>
+            </v-btn>
+            <v-flex xs12>
+              <h2 class="text-xs-center">
+                {{ getCart.length + " " + itemOrItems }} in cart
+              </h2>
+            </v-flex>
+            <v-flex xs12>
+              <v-divider />
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-flex>
+      <v-flex xs12 pt-2>
+        <div v-for="(product, i) in getCart" :key="i">
+          <mini-cart-item @item-removed="isCartEmpty" :product="product" />
+          <v-divider class="my-2" />
+        </div>
+      </v-flex>
+      <v-flex xs12>
+        <h3 v-if="getCart" class="my-3">Total Kr. {{ cartPrice }}</h3>
+        <v-btn
+          :disabled="!getCart.length"
+          to="/checkout"
+          block
+          class=" accent ma-0 pa-0"
+        >
+          Go to checkout
         </v-btn>
-        <v-flex xs12>
-          <h1 class="text-xs-center">
-            {{ getCart.length + " " + itemOrItems }} in cart
-          </h1>
-        </v-flex>
-        <v-flex xs12>
-          <v-divider />
-        </v-flex>
-      </v-layout>
-    </v-container>
-    <mini-cart-item
-      @item-removed="isCartEmpty"
-      v-for="(product, i) in getCart"
-      :key="i"
-      :product="product"
-    />
-  </div>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -35,11 +56,12 @@ import { Product } from "@/types";
     MiniCartItem
   },
   computed: {
-    ...mapGetters("cart", ["getCart"])
+    ...mapGetters("cart", ["getCart", "cartPrice"])
   }
 })
 export default class MiniCart extends Vue {
   getCart!: Product[];
+  cartPrice!: number;
 
   closeCart() {
     this.$emit("close-cart");
@@ -59,3 +81,10 @@ export default class MiniCart extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+div,
+span {
+  font-family: "OS", sans-serif;
+}
+</style>

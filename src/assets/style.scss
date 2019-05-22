@@ -78,6 +78,10 @@ $accent: #6ecc38;
   font-weight: 400;
 }
 
+::v-deep button *:not(.material-icons) {
+  font-weight: 600;
+}
+
 p,
 .content {
   margin: 0;
@@ -88,8 +92,8 @@ p,
 small,
 .caption {
   margin: 0;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 10px !important;
+  line-height: 20px !important;
 }
 
 em,
@@ -106,31 +110,31 @@ h6 {
   margin: 0;
   font-weight: 700;
   text-transform: uppercase;
-  font-family: 'Sintony', sans-serif;
+  font-family: 'Sintony', sans-serif !important;
 }
 
 h1,
 .h1 {
-  font-size: 33px;
-  line-height: 42px;
+  font-size: 33px !important;
+  line-height: 42px !important;
 }
 
 h2,
 .h2 {
-  font-size: 26px;
-  line-height: 33px;
+  font-size: 26px !important;
+  line-height: 33px !important;
 }
 
 h3,
 .h3 {
-  font-size: 20px;
-  line-height: 26px;
+  font-size: 20px !important;
+  line-height: 26px !important;
 }
 
 h4,
 .h4 {
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 16px !important;
+  line-height: 20px !important;
 }
 
 .display {
@@ -139,7 +143,7 @@ h4,
 }
 
 a {
-  font-size: 16px;
+  font-size: 16px !important;
   text-decoration: none;
   color: $black;
 }
@@ -152,28 +156,28 @@ ul.list-unstyled {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 960px) {
   p,
   .content {
-    font-size: 20px;
-    line-height: 33px;
+    font-size: 20px !important;
+    line-height: 33px !important;
   }
   
   h1,
   .h1 {
-    font-size: 42px;
-    line-height: 53px;
+    font-size: 42px !important;
+    line-height: 53px !important;
   }
   
   h2,
   .h2 {
-    font-size: 33px;
-    line-height: 42px;
+    font-size: 33px !important;
+    line-height: 42px !important;
   }
   
   h3,
   .h3 {
-    font-size: 26px;
-    line-height: 33px;
+    font-size: 26px !important;
+    line-height: 33px !important;
   }
 }

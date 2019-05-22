@@ -4,11 +4,18 @@
       category
     }}</v-tab>
     <v-tab-item v-for="(category, i) in getCategories" :key="i">
-      <product-card
-        v-for="(product, i) in categorizedProducts[i]"
-        :key="i"
-        :product="product"
-      />
+      <v-layout row wrap>
+        <v-flex
+          class="my-2"
+          xs12
+          sm6
+          lg4
+          v-for="(product, i) in categorizedProducts[i]"
+          :key="i"
+        >
+          <product-card :product="product" />
+        </v-flex>
+      </v-layout>
     </v-tab-item>
   </v-tabs>
 </template>
@@ -43,3 +50,9 @@ export default class MainTabs extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+* {
+  font-family: "OS", sans-serif;
+}
+</style>

@@ -5,7 +5,7 @@ import { Product } from "@/types";
 export default class Cart extends VuexModule {
   static namespaced = true;
 
-  categories: string[] = ["sale", "electronics", "outdoors"];
+  categories: string[] = ["sale", "electronics", "outdoors", "pets"];
   products: Product[] = [
     {
       name: 'Sharp 50" UHD TV',
@@ -65,6 +65,69 @@ export default class Cart extends VuexModule {
       }&auto=format&fm=jpg`,
       specific: {
         fuel: "gas"
+      }
+    },
+    {
+      name: "Pedigree Vital Protection Maxi",
+      price: 245,
+      category: ["pets", "sale"],
+      amount: 0,
+      stock: 10,
+      promo: {
+        name: "sale",
+        before: 399,
+        save: 154
+      },
+      image: `https://bilkadk.imgix.net/medias/sys_master/root/h14/h65/9405001695262/82013200320.jpg?w=${
+        this.getViewport
+      }&auto=format&fm=jpg`,
+      specific: {
+        breed: "Middle-size"
+      }
+    },
+    {
+      name: "Apple Airpods 2019",
+      price: 1379,
+      category: ["electronics"],
+      color: "white",
+      amount: 0,
+      stock: 15,
+      image: `https://bilkadk.imgix.net/medias/sys_master/root/h3f/h4a/11513026379806.png?w=${
+        this.getViewport
+      }&auto=format&fm=jpg`,
+      specific: {
+        chip: "H1"
+      }
+    },
+    {
+      name: "Samsung Galaxy Buds",
+      price: 1199,
+      category: ["electronics"],
+      color: "white",
+      amount: 0,
+      stock: 7,
+      image: `https://bilkadk.imgix.net/medias/sys_master/root/h78/h02/11506618990622/SM-R170-001-Front-White-result.png?w=${
+        this.getViewport
+      }&auto=format&fm=jpg`,
+      specific: {
+        chip: "Fancy Samsung"
+      }
+    },
+    {
+      name: "Huawei P30 128GB Dual Sim",
+      price: 5088,
+      category: ["electronics"],
+      color: "blue",
+      amount: 0,
+      stock: 0,
+      image: `https://bilkadk.imgix.net/medias/sys_master/root/hb1/h76/11669769617438/Elle-Aurora-Front-Unlock-result.jpg?w=${
+        this.getViewport
+      }&auto=format&fm=jpg`,
+      specific: {
+        os: "Andriod, for now",
+        screen: '6.1"',
+        storage: "128GB",
+        camera: "40MP"
       }
     }
   ];

@@ -1,22 +1,28 @@
 <template>
-  <div>
-    <v-card class="ma-4">
-      <v-img :src="product.image" />
+  <div class="product mx-4">
+    <v-card>
+      <v-img contain :max-height="300" :src="product.image" />
       <v-card-title class="pa-3">
         <div>
           <h3 class="mb-0">{{ product.name }}</h3>
-          <div>description incoming</div>
+          <div>Most definitely worth the purchase</div>
         </div>
       </v-card-title>
       <v-card-actions class="d-flex justify-space-between pa-3">
         <v-flex xs6>
-          <v-btn class="primary black--text" ref="add-to-cart" @click.native="addToCart">
+          <v-btn
+            class="primary black--text"
+            ref="add-to-cart"
+            @click.native="addToCart"
+          >
             Add to cart
           </v-btn>
         </v-flex>
         <v-flex xs6>
           <v-layout column align-end>
-            <span class="dark-grey--text caption" v-if="product.category.includes('sale')"
+            <span
+              class="dark-grey--text caption"
+              v-if="product.category.includes('sale')"
               >Was kr. {{ product.promo.before }}</span
             >
             <h3 class="secondary--text">kr. {{ product.price }}</h3>
@@ -24,7 +30,7 @@
         </v-flex>
       </v-card-actions>
     </v-card>
-    <v-snackbar v-model="snackbar" :timeout=4000>
+    <v-snackbar v-model="snackbar" :timeout="4000">
       Product added to cart!
       <v-btn @click.native="cancel" class="secondary">
         Remove
@@ -44,13 +50,27 @@ export default class ProductCard extends Vue {
   snackbar: boolean = false;
 
   cancel() {
-    this.$store.commit('cart/removeFromCart', this.product);
+    this.$store.commit("cart/removeFromCart", this.product);
+    this.$store.dispatch("cart/countPrice");
     this.snackbar = false;
   }
 
   addToCart() {
     this.$store.commit("cart/addToCart", this.product);
+    this.$store.dispatch("cart/countPrice");
     this.snackbar = true;
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.product {
+  height: 500px;
+  .v-card {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+  }
+}
+</style>

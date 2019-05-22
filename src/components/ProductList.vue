@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <product-card
-      v-for="(product, i) in category"
-      :key="i"
-      :product="product"
-    />
-  </div>
+  <v-layout row wrap>
+    <v-flex class="my-2" xs12 sm6 lg4 v-for="(product, i) in category" :key="i">
+      <product-card :product="product" />
+    </v-flex>
+  </v-layout>
 </template>
 
 <script lang="ts">
@@ -23,3 +21,8 @@ export default class ProductList extends Vue {
 }
 </script>
 
+<style lang="scss" scoped>
+* {
+  font-family: "OS", sans-serif;
+}
+</style>

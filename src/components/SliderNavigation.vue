@@ -5,6 +5,9 @@
       v-for="(item, i) in navCategories"
       :key="i"
     >
+      <v-icon>
+        {{ item.icon }}
+      </v-icon>
       <router-link :to="item.to" v-if="item.type === 'nav'">
         {{ item.title }}
       </router-link>
@@ -38,21 +41,19 @@ export default class SliderNavigation extends Vue {
     {
       type: "nav",
       title: "Home",
+      icon: "home",
       to: "/"
     },
     {
       type: "nav",
-      title: "Cart",
-      to: "/cart"
-    },
-    {
-      type: "nav",
       title: "Checkout",
+      icon: "credit_card",
       to: "/checkout"
     },
     {
       type: "product",
-      title: "Categories"
+      title: "Categories",
+      icon: "view_list"
     }
   ];
   productCategories: ProductCategory[] = [
@@ -63,6 +64,10 @@ export default class SliderNavigation extends Vue {
     {
       title: "Outdoors",
       to: "/products/outdoors"
+    },
+    {
+      title: "Pets",
+      to: "/products/pets"
     }
   ];
 }
@@ -78,5 +83,8 @@ export default class SliderNavigation extends Vue {
   .v-expansion-panel__container {
     background-color: transparent;
   }
+}
+*:not(.material-icons) {
+  font-family: "OS", sans-serif;
 }
 </style>

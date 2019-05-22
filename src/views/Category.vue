@@ -5,7 +5,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import ProductList from "@/components/ProductList.vue";
-import { mapGetters } from "vuex"
+import { mapGetters } from "vuex";
 import { Product } from "@/types";
 
 @Component({
@@ -21,8 +21,8 @@ export default class Category extends Vue {
 
   get getCategorized() {
     return this.getProducts.filter(product =>
-    product.category.includes(this.$route.params.category));
-  };
+      product.category.includes(this.$route.params.category)
+    );
+  }
 }
 </script>
-

@@ -22,6 +22,7 @@ export default class App extends Vue {
     const parsed = localStorage.getItem("currentCart");
     if (parsed !== null) {
       this.$store.commit("cart/setCart", JSON.parse(parsed));
+      this.$store.dispatch("cart/countPrice");
     }
   }
 }
