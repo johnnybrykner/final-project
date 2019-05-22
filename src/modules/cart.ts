@@ -58,4 +58,8 @@ export default class Cart extends VuexModule {
   setTotal(subTotal: number) {
     this.subTotal = subTotal;
   }
+  @Mutation
+  emptyCart() {
+    this.currentCart = [];
+  }
 }

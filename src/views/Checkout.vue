@@ -1,5 +1,5 @@
 <template>
-  <v-container grid-list-lg pa-0>
+  <v-container :mt-5="$vuetify.breakpoint.mdAndUp" grid-list-lg pa-0>
     <v-layout row wrap>
       <v-flex xs12 md6 lg7>
         <checkout-panel
@@ -37,28 +37,28 @@
           </template>
           <payment-method />
         </checkout-panel>
-
-        <div class="text-xs-center hidden-sm-and-down">
-          <v-checkbox
-            v-model="checked"
-            label="I accept notBilka's data protection and usage terms."
-          ></v-checkbox>
-          <v-btn :disabled="!checked || flowIncomplete" large block
-            >Go to payment</v-btn
-          >
-        </div>
       </v-flex>
       <v-flex xs12 md6 lg5>
         <cart-summary />
-        <order-total />
+        <v-card class="pl-2">
+          <v-card-title>
+            <h3 class="secondary--text">Total Kr. {{ cartPrice }}</h3>
+          </v-card-title>
+        </v-card>
         <discount-coupon class="my-3" />
-        <div class="hidden-md-and-up">
+        <div class="px-4">
           <v-checkbox
             v-model="checked"
             label="I accept notBilka's data protection and usage terms."
-          ></v-checkbox>
-          <v-btn :disabled="!checked || flowIncomplete" large block
-            >Go to payment</v-btn
+          />
+          <v-btn
+            class="accent"
+            :disabled="!checked || flowIncomplete"
+            large
+            block
+            to="/"
+            @click.native="checkout"
+            >Approve and proceed</v-btn
           >
         </div>
       </v-flex>
@@ -67,9 +67,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import CartSummary from "@/components/CartSummary.vue";
-import OrderTotal from "@/components/OrderTotal.vue";
 import CheckoutPanel from "@/components/CheckoutPanel.vue";
 import UserCredentials from "@/components/UserCredentials.vue";
 import DeliveryDetails from "@/components/DeliveryDetails.vue";
@@ -81,7 +80,6 @@ import { mapGetters } from "vuex";
 
 @Component({
   components: {
-    OrderTotal,
     CartSummary,
     CheckoutPanel,
     UserCredentials,
@@ -91,15 +89,21 @@ import { mapGetters } from "vuex";
     DiscountCoupon
   },
   computed: {
-    ...mapGetters("checkout", ["checkoutStatus"])
+    ...mapGetters("checkout", ["checkoutStatus"]),
+    ...mapGetters("cart", ["cartPrice"])
   }
 })
 export default class Checkout extends Vue {
   checkoutStatus!: CheckoutStatus;
+  cartPrice!: number;
   get flowIncomplete() {
     return Object.values(this.checkoutStatus).includes(false);
   }
   checked = false;
+  checkout() {
+    localStorage.removeItem("currentCart");
+    this.$store.commit("cart/emptyCart");
+  }
 
   get user() {
     return {
@@ -169,7 +173,7 @@ ul {
 .checkout-panel:not(:last-of-type) {
   margin-bottom: 2rem;
 }
-.v-input.v-input--checkbox {
-  justify-content: center;
+*:not(.material-icons) {
+  font-family: "OS", sans-serif;
 }
 </style>

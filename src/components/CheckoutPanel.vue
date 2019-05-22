@@ -4,7 +4,7 @@
       <v-container pa-0>
         <v-layout>
           <v-flex v-if="readonly" icon align-self-baseline shrink>
-            <v-icon large color="green" class="font-weight-black">done</v-icon>
+            <v-icon large class="accent--text font-weight-black">done</v-icon>
           </v-flex>
           <v-divider v-if="readonly" vertical light></v-divider>
           <v-flex align-self-baseline>
@@ -14,8 +14,7 @@
             <v-btn
               flat
               small
-              color="blue"
-              class="ma-0"
+              class="ma-0 secondary--text"
               depressed
               @click.native="editStep"
             >

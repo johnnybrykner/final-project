@@ -44,6 +44,9 @@
           </v-flex>
         </v-layout>
       </v-flex>
+      <div class="quantity-phone em" v-if="minimal && summary">
+        {{ "x" + product.amount }}
+      </div>
     </v-layout>
   </v-container>
 </template>
@@ -74,6 +77,12 @@ img {
   flex-grow: 0 !important;
 }
 .mini-product {
+  position: relative;
   height: 150px;
+  .quantity-phone {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }
 </style>

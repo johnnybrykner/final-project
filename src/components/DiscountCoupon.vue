@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-card-title class="pa-0">
-      <v-icon v-if="added" large color="green" class="pa-2 font-weight-black">
+      <v-icon v-if="added" large class="accent--text pa-2 font-weight-black">
         done
       </v-icon>
       <v-divider v-if="added" vertical light />
@@ -14,8 +14,7 @@
       <v-btn
         flat
         small
-        color="blue"
-        class="ma-0"
+        class="ma-0 secondary--text"
         depressed
         @click.native="adding = true"
       >

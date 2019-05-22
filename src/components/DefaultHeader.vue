@@ -14,7 +14,7 @@
       >
         <v-badge right class="black--text">
           <template v-slot:badge>
-            <span class="white--text">{{ getCart.length }}</span>
+            <span class="white--text">{{ getTotalProducts }}</span>
           </template>
           <v-icon>
             shopping_cart
@@ -32,11 +32,12 @@ import { mapGetters } from "vuex";
 
 @Component({
   computed: {
-    ...mapGetters("cart", ["getCart"])
+    ...mapGetters("cart", ["getCart", "getTotalProducts"])
   }
 })
 export default class DefaultHeader extends Vue {
   getCart!: Product[];
+  getTotalProducts!: number;
 
   toggleCart(): void {
     this.$emit("toggle-cart");

@@ -15,7 +15,7 @@
             </v-btn>
             <v-flex xs12>
               <h2 class="text-xs-center">
-                {{ getCart.length + " " + itemOrItems }} in cart
+                {{ getTotalProducts + " " + itemOrItems }} in cart
               </h2>
             </v-flex>
             <v-flex xs12>
@@ -36,7 +36,7 @@
           :disabled="!getCart.length"
           to="/checkout"
           block
-          class=" accent ma-0 pa-0"
+          class="accent ma-0 pa-0"
         >
           Go to checkout
         </v-btn>
@@ -56,12 +56,13 @@ import { Product } from "@/types";
     MiniCartItem
   },
   computed: {
-    ...mapGetters("cart", ["getCart", "cartPrice"])
+    ...mapGetters("cart", ["getCart", "cartPrice", "getTotalProducts"])
   }
 })
 export default class MiniCart extends Vue {
   getCart!: Product[];
   cartPrice!: number;
+  getTotalProducts!: number;
 
   closeCart() {
     this.$emit("close-cart");

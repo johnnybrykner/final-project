@@ -43,19 +43,16 @@
         <span>
           {{
             activeUser.firstName +
-              ", " +
+              " " +
               activeUser.lastName +
               ", " +
-              (activeOption.address !== ""
-                ? activeOption.address
-                : activeUser.address)
+              (hasBeenSet ? activeOption.address : activeUser.address)
           }}
         </span>
         <v-btn
           flat
           small
-          color="blue"
-          class="ma-0"
+          class="ma-0 secondary--text"
           depressed
           :disabled="editing"
           @click.native="editing = true"
@@ -80,8 +77,14 @@
         </h3>
       </v-flex>
       <v-flex pb-0 class="address-field" xs12>
-        <span>Posthus Q8, Silkeborgvej 306, 8230 Åbyhøj</span>
-        <v-btn flat small color="blue" class="ma-0" depressed>
+        <span>{{
+          activeUser.firstName +
+            " " +
+            activeUser.lastName +
+            ", " +
+            "Posthus Q8, Silkeborgvej 306, 8230 Åbyhøj"
+        }}</span>
+        <v-btn flat small class="ma-0 secondary--text" depressed>
           Edit<v-icon>chevron_right</v-icon>
         </v-btn>
       </v-flex>
@@ -114,6 +117,9 @@ import { mapGetters } from "vuex";
 export default class DeliveryDetails extends Vue {
   activeUser!: UserDetails;
   editing = false;
+  get hasBeenSet() {
+    return this.$store.state.checkout.deliveryDetails.method !== "";
+  }
   deliveryMethods = [
     {
       icon: "home",
@@ -121,7 +127,9 @@ export default class DeliveryDetails extends Vue {
       class: "address",
       data: {
         method: "Delivery to address",
-        address: this.$store.state.checkout.deliveryDetails.address,
+        address: this.hasBeenSet
+          ? this.$store.state.checkout.deliveryDetails.address
+          : this.$store.state.checkout.userDetails.address,
         price: 49
       }
     },
@@ -165,6 +173,7 @@ export default class DeliveryDetails extends Vue {
 }
 ::v-deep .delivery-button {
   width: 100%;
+  height: 100px;
   .v-btn__content {
     display: flex;
     flex-flow: row nowrap;

@@ -1,8 +1,8 @@
 <template>
   <v-card>
     <v-list class="pb-0">
-      <h2 class="ml-4 pl-1 mt-3 mb-2 mr-3">
-        {{ getCart.length + " " + productOrProducts }}
+      <h2 class="mx-3 pa-2">
+        {{ getTotalProducts + " " + productOrProducts }}
       </h2>
       <v-divider class="mr-4" />
       <v-list class="py-4 mini-cart__list">
@@ -32,11 +32,12 @@ import { Product } from "@/types";
     MiniCartItem
   },
   computed: {
-    ...mapGetters("cart", ["getCart"])
+    ...mapGetters("cart", ["getCart", "getTotalProducts"])
   }
 })
 export default class CartSummary extends Vue {
   getCart!: Product[];
+  getTotalProducts!: number;
 
   get productOrProducts() {
     if (this.getCart.length > 1) {
@@ -69,6 +70,9 @@ export default class CartSummary extends Vue {
     display: block;
     overflow: hidden;
     padding: 0 !important;
+    .v-divider:last-of-type {
+      margin-right: 0 !important;
+    }
     .mini-cart__item {
       display: block;
       border: none;

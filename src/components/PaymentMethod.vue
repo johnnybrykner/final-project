@@ -7,7 +7,7 @@
       <span>
         {{
           activeUser.firstName +
-            ", " +
+            " " +
             activeUser.lastName +
             ", " +
             activeUser.address
