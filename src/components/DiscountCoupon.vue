@@ -61,7 +61,7 @@ export default class DiscountCoupon extends Vue {
   cancelCode() {
     this.$store.commit("checkout/setCoupon", {
       applied: false,
-      code: ""
+      coupon: ""
     });
     this.added = false;
     this.adding = false;

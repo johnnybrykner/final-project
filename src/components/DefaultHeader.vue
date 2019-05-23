@@ -3,7 +3,11 @@
     <div ref="icon-menu-toggle" @click="toggleMenu">
       <v-toolbar-side-icon />
     </div>
-    <v-toolbar-title class="ml-0 logo">notBilka</v-toolbar-title>
+    <v-toolbar-title class="ml-0 logo">
+      <router-link to="/">
+        notBilka
+      </router-link>
+    </v-toolbar-title>
     <v-spacer />
     <v-toolbar-items>
       <v-btn
@@ -51,7 +55,9 @@ export default class DefaultHeader extends Vue {
 
 <style lang="scss" scoped>
 .logo {
-  font-family: "OS", sans-serif;
-  font-weight: 600;
+  font-family: "sintony", sans-serif;
+  a {
+    font-size: 1.5rem !important;
+  }
 }
 </style>

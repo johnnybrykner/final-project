@@ -5,6 +5,7 @@ $white: #fff;
 $primary: #ff9f79;
 $secondary: #6070ff;
 $accent: #6ecc38;
+$warning: #FFC107;
 
 .primary {
   background-color: $primary !important;
@@ -47,6 +48,12 @@ $accent: #6ecc38;
 }
 .black--text {
   color: $black !important;
+}
+.warning {
+  background-color: $warning !important;
+}
+.warning--text {
+  color: $warning !important;
 }
 
 // start of typography

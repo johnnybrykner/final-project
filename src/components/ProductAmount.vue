@@ -50,5 +50,6 @@ export default class ProductAmount extends Vue {
 .slider {
   border-radius: 50px;
   background-color: $light-grey;
+  padding: 2px;
 }
 </style>

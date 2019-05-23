@@ -45,6 +45,9 @@ export default class Checkout extends VuexModule {
   get activeUser(): UserDetails {
     return this.userDetails;
   }
+  get discountCoupon(): DiscountInterface {
+    return this.discountApplied;
+  }
 
   @Action({ commit: "goToStep" })
   stepChange(activeStep: number) {

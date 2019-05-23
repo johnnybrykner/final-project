@@ -4,7 +4,7 @@
       <v-img contain :max-height="300" :src="product.image" />
       <v-card-title class="pa-3">
         <div>
-          <h3 class="mb-0">{{ product.name }}</h3>
+          <h4 class="mb-0">{{ product.name }}</h4>
           <div>Most definitely worth the purchase</div>
         </div>
       </v-card-title>

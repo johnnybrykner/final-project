@@ -1,5 +1,10 @@
 <template>
-  <v-container :mt-5="$vuetify.breakpoint.mdAndUp" grid-list-lg pa-0>
+  <v-container class="checkout" :mt-5="$vuetify.breakpoint.mdAndUp" grid-list-lg pa-0>
+    <v-layout class="nada warning ma-0" v-if="cartPrice === 0">
+      <h4 class="text-xs-center">
+        Are you sure you want to check out with NOTHING?
+      </h4>
+    </v-layout>
     <v-layout row wrap>
       <v-flex xs12 md6 lg7>
         <checkout-panel
@@ -41,8 +46,20 @@
       <v-flex xs12 md6 lg5>
         <cart-summary />
         <v-card class="pl-2">
-          <v-card-title>
-            <h3 class="secondary--text">Total Kr. {{ cartPrice }}</h3>
+          <v-card-title class="grand-total">
+            <div v-if="deliveryCost">
+              <span class="em">
+                {{ "Delivery: " + "Kr. " + deliveryCost }}
+              </span>
+              <v-divider light class="mb-2" />
+            </div>
+            <div v-if="discountCoupon.applied">
+              <span class="em">
+                {{ discountCoupon.code + ": 20% OFF" }}
+              </span>
+              <v-divider light class="mb-2" />
+            </div>
+            <h3 class="secondary--text">Total Kr. {{ Math.round(finalPrice) }}</h3>
           </v-card-title>
         </v-card>
         <discount-coupon class="my-3" />
@@ -56,7 +73,7 @@
             :disabled="!checked || flowIncomplete"
             large
             block
-            to="/"
+            to="/receipt"
             @click.native="checkout"
             >Approve and proceed</v-btn
           >
@@ -75,7 +92,7 @@ import DeliveryDetails from "@/components/DeliveryDetails.vue";
 import SimpleList from "@/components/SimpleList.vue";
 import PaymentMethod from "@/components/PaymentMethod.vue";
 import DiscountCoupon from "@/components/DiscountCoupon.vue";
-import { CheckoutStatus } from "@/types.ts";
+import { CheckoutStatus, DiscountInterface } from "@/types.ts";
 import { mapGetters } from "vuex";
 
 @Component({
@@ -89,13 +106,14 @@ import { mapGetters } from "vuex";
     DiscountCoupon
   },
   computed: {
-    ...mapGetters("checkout", ["checkoutStatus"]),
+    ...mapGetters("checkout", ["checkoutStatus", "discountCoupon"]),
     ...mapGetters("cart", ["cartPrice"])
   }
 })
 export default class Checkout extends Vue {
   checkoutStatus!: CheckoutStatus;
   cartPrice!: number;
+  discountCoupon!: DiscountInterface;
   get flowIncomplete() {
     return Object.values(this.checkoutStatus).includes(false);
   }
@@ -103,6 +121,16 @@ export default class Checkout extends Vue {
   checkout() {
     localStorage.removeItem("currentCart");
     this.$store.commit("cart/emptyCart");
+  }
+  get deliveryCost() {
+    return this.$store.state.checkout.deliveryDetails.price;
+  }
+  get finalPrice() {
+    let multiplier = 100;
+    if (this.discountCoupon.applied) {
+      multiplier = 80;
+    }
+    return ((this.cartPrice + this.deliveryCost) / 100) * multiplier;
   }
 
   get user() {
@@ -175,5 +203,19 @@ ul {
 }
 *:not(.material-icons) {
   font-family: "OS", sans-serif;
+}
+.nada {
+  h4 {
+    width: 100%;
+  }
+}
+.grand-total {
+  flex-flow: column nowrap;
+  align-items: baseline;
+}
+@media (min-width: 960px) {
+  .checkout {
+    max-width: 1264px;
+  }
 }
 </style>

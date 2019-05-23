@@ -2,7 +2,7 @@
   <v-container class="pa-0 mini-product">
     <v-layout row nowrap align-self-center fill-height ma-0>
       <v-flex xs12 md4 pa-0 d-flex justify-center>
-        <img :src="product.image" class="align-self-center px-3" />
+        <img :src="product.image" class="align-self-center" />
       </v-flex>
       <v-flex xs12 md8 v-if="!minimal">
         <v-layout column nowrap fill-height justify-space-around>
@@ -19,7 +19,7 @@
           </v-flex>
           <v-flex d-flex justify-start caption py-0 v-if="summary">
             <span class="dark-grey--text">
-              Quantity
+              Quantity:
             </span>
             <span class="ml-3">
               {{ product.amount }}
@@ -27,7 +27,7 @@
           </v-flex>
           <v-flex d-flex py-2 justify-end>
             <span
-              v-if="product.promo.before"
+              v-if="product.promo"
               class="dark-grey--text caption align-self-center"
             >
               Was {{ product.promo.before }}
