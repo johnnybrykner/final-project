@@ -2,7 +2,7 @@ import { Module, VuexModule } from "vuex-module-decorators";
 import { Product } from "@/types";
 
 @Module
-export default class Cart extends VuexModule {
+export default class Catalog extends VuexModule {
   static namespaced = true;
 
   categories: string[] = ["sale", "electronics", "outdoors", "pets"];
@@ -16,7 +16,8 @@ export default class Cart extends VuexModule {
       color: "black",
       image: `https://bilkadk.imgix.net/medias/sys_master/root/hae/hb2/11354062749726.jpg?w=${
         this.getViewport
-      }&auto=format&fm=jpg`
+      }&auto=format&fm=jpg`,
+      slug: "sharp-50-uhd-tv"
     },
     {
       name: "Apple iPhone 8 64GB",
@@ -27,7 +28,8 @@ export default class Cart extends VuexModule {
       color: "gold",
       image: `https://bilkadk.imgix.net/medias/sys_master/root/h8b/h91/9807195242526/iPhone8-Family-GB-EN-SCREEN.jpg?w=${
         this.getViewport
-      }&auto=format&fm=jpg`
+      }&auto=format&fm=jpg`,
+      slug: "apple-iphone-8-64gb"
     },
     {
       name: "Weber Q3000",
@@ -43,7 +45,8 @@ export default class Cart extends VuexModule {
       color: "charcoal",
       image: `https://bilkadk.imgix.net/medias/sys_master/root/h37/hf0/9075133480990.jpg?w=${
         this.getViewport
-      }&auto=format&fm=jpg`
+      }&auto=format&fm=jpg`,
+      slug: "weber-q3000"
     },
     {
       name: "Pedigree Vital Protection Maxi",
@@ -58,7 +61,8 @@ export default class Cart extends VuexModule {
       },
       image: `https://bilkadk.imgix.net/medias/sys_master/root/h14/h65/9405001695262/82013200320.jpg?w=${
         this.getViewport
-      }&auto=format&fm=jpg`
+      }&auto=format&fm=jpg`,
+      slug: "pedigree-vital-protection-maxi"
     },
     {
       name: "Apple Airpods 2019",
@@ -69,7 +73,8 @@ export default class Cart extends VuexModule {
       stock: 15,
       image: `https://bilkadk.imgix.net/medias/sys_master/root/h3f/h4a/11513026379806.png?w=${
         this.getViewport
-      }&auto=format&fm=jpg`
+      }&auto=format&fm=jpg`,
+      slug: "apple-airpods-2019"
     },
     {
       name: "Samsung Galaxy Buds",
@@ -80,7 +85,8 @@ export default class Cart extends VuexModule {
       stock: 7,
       image: `https://bilkadk.imgix.net/medias/sys_master/root/h78/h02/11506618990622/SM-R170-001-Front-White-result.png?w=${
         this.getViewport
-      }&auto=format&fm=jpg`
+      }&auto=format&fm=jpg`,
+      slug: "samsung-galaxy-buds"
     },
     {
       name: "Huawei P30 128GB Dual Sim",
@@ -91,7 +97,8 @@ export default class Cart extends VuexModule {
       stock: 0,
       image: `https://bilkadk.imgix.net/medias/sys_master/root/hb1/h76/11669769617438/Elle-Aurora-Front-Unlock-result.jpg?w=${
         this.getViewport
-      }&auto=format&fm=jpg`
+      }&auto=format&fm=jpg`,
+      slug: "huawei-p30-128gb-dual-sim"
     },
     {
       name: "Nokia 3310 - 3G",
@@ -107,7 +114,8 @@ export default class Cart extends VuexModule {
       stock: 12,
       image: `https://bilkadk.imgix.net/medias/sys_master/root/h1f/hdf/9995533123614/Charcoal.jpg?w=${
         this.getViewport
-      }&auto=format&fm=jpg`
+      }&auto=format&fm=jpg`,
+      slug: "nokia-3310-3g"
     },
     {
       name: "Grouw robot lawnmower - 500 m2 App Control",
@@ -118,7 +126,8 @@ export default class Cart extends VuexModule {
       stock: 2,
       image: `https://bilkadk.imgix.net/medias/sys_master/root/hfe/h79/10807462559774.jpg?w=${
         this.getViewport
-      }&auto=format&fm=jpg`
+      }&auto=format&fm=jpg`,
+      slug: "grouw-robot-lawnmower-500m2-app-control"
     },
     {
       name: "Dog pillow",
@@ -129,7 +138,8 @@ export default class Cart extends VuexModule {
       stock: 25,
       image: `https://bilkadk.imgix.net/medias/sys_master/root/hbe/hdf/9455030730782/70584-4.jpg?w=${
         this.getViewport
-      }&auto=format&fm=jpg`
+      }&auto=format&fm=jpg`,
+      slug: "dog-pillow"
     },
     {
       name: "Tennis balls for poochies",
@@ -140,7 +150,8 @@ export default class Cart extends VuexModule {
       stock: 50,
       image: `https://bilkadk.imgix.net/medias/sys_master/root/hb1/h33/10859545362462/NERF-4pack-Tennisballs-w-squeak-EAN-5708063562330-Art.-79954201.jpg?w=${
         this.getViewport
-      }&auto=format&fm=jpg`
+      }&auto=format&fm=jpg`,
+      slug: "tennis-balls-for-poochies"
     }
   ];
 

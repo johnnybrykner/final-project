@@ -75,7 +75,7 @@ export default class MiniCart extends Vue {
   }
 
   get itemOrItems() {
-    if (this.getCart.length === 1) {
+    if (this.getTotalProducts === 1) {
       return "item";
     }
     return "items";
